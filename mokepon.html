@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Mokepon!</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <section id="seleccionar-mokepon">
+        <span class="black-box">
+            <h1 class="titulo">🔥💦 Mokepon 🌿🥊</h1>
+            <h2 class="subtitulo">Elige tu Mokepon!</h2>
+            <div id="contenedor-mokepons" class="tarjetas">
+            </div>
+            <button id="boton-mokepon">Seleccionar mokepon</button>
+
+        </span>
+    </section>
+
+    <section id="seleccionar-ataque">
+        <div class="black-box">
+            <h1 class="titulo">🔥💦 Mokepon 🌿🥊</h1>
+            <h2 class="subtitulo">Elige el ataque de tu mokepon!</h2>
+
+            <div id="contenedor-ataques" class="tarjeta-ataque">
+            </div>
+
+            <div id="mensajes">
+                <p id="resultado">HORA DEL DUELO!</p>
+                <section id="reiniciar">
+                    <button id="boton-reiniciar">Jugar de nuevo</button>
+                </section>
+            </div>
+
+            <div class="combate">
+                <div class="combate-jugador">
+                    <div id="vidas-jugador">3</div>
+                    <p id="mokepon-jugador"></p>
+                    <p id="ataque-jugador"></p>
+                </div>
+
+                <div class="combate-enemigo">
+                    <div id="vidas-enemigo">3</div>
+                    <p id="mokepon-enemigo"></p>
+                    <p id="ataque-enemigo"></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script src="js/mokepon.js"></script>
+</body>
+
+</html>
