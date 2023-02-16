@@ -7,12 +7,13 @@ const sectionAtaqueEnemigo = document.getElementById('ataque-enemigo')
 const sectionAtaqueJugador = document.getElementById('ataque-jugador')
 const sectionMensajes = document.getElementById('resultado')
 const sectionReiniciar = document.getElementById('reiniciar')
+const sectionRegistroCombate = document.getElementById('registro-combate')
 const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
 const sectionSeleccionarMokepon = document.getElementById('seleccionar-mokepon')
 const spanMokeponEnemigo = document.getElementById('mokepon-enemigo')
 const spanMokeponJugador = document.getElementById('mokepon-jugador')
-const spanVidasEnemigo = document.getElementById('vidas-enemigo')
-const spanVidasJugador = document.getElementById('vidas-jugador')
+const spanVictoriasEnemigo = document.getElementById('victorias-enemigo')
+const spanVictoriasJugador = document.getElementById('victorias-jugador')
 
 // Variables globales
 let ataqueEnemigo = []
@@ -34,8 +35,10 @@ let mokepones = []
 let mokeponJugador
 let opcionesAtaques
 let opcionesMokepons
-let vidasEnemigo = 3
-let vidasJugador = 3
+let victoriasEnemigo = 0
+let victoriasJugador = 0
+// let vidasEnemigo = 3
+// let vidasJugador = 3
 
 // Constructor de mokepons
 class Mokepon {
@@ -190,15 +193,12 @@ function secuenciaAtaque() {
         boton.addEventListener('click', (e) => {
             if (e.target.textContent === '🔥') {    //  e.tarjet.textContent lo que registra el evento en si
                 ataqueJugador.push('FUEGO 🔥')
-                console.log(ataqueJugador)
                 boton.disabled = 'true'
             } else if (e.target.textContent === '💦') {
                 ataqueJugador.push('AGUA 💦')
-                console.log(ataqueJugador)
                 boton.disabled = 'true'
             } else {
                 ataqueJugador.push('PLANTA 🌿')
-                console.log(ataqueJugador)
                 boton.disabled = 'true'
             }
             ataqueAleatorioEnemigo()
@@ -245,27 +245,28 @@ function combateMokepon() {
     for (let i = 0; i < ataqueJugador.length; i++) {
         if (ataqueJugador[i] === ataqueEnemigo[i]) {
             indexAmbosJugadores(i, i)
-            crearMensaje("EMPATE")
-            vidasEnemigo--
-            spanVidasEnemigo.innerHTML = vidasEnemigo
+            crearMensaje('EMPATE')
         } else if (ataqueJugador[i] == 'FUEGO 🔥' && ataqueEnemigo[i] == 'PLANTA 🌿' || ataqueJugador[i] == 'AGUA 💦' && ataqueEnemigo[i] == 'FUEGO 🔥' || ataqueJugador[i] == 'PLANTA 🌿' && ataqueEnemigo[i] == 'AGUA 💦') {
             indexAmbosJugadores(i, i)
-            crearMensaje("Ganaste")
-            vidasEnemigo--
-            spanVidasEnemigo.innerHTML = vidasEnemigo
+            crearMensaje('VICTORIA')
+            victoriasJugador++
+            spanVictoriasJugador.innerHTML = victoriasJugador
         } else {
-            crearMensaje("PERDISTE")
-            vidasJugador--
-            spanVidasJugador.innerHTML = vidasJugador
+            indexAmbosJugadores(i, i)
+            crearMensaje('DERROTA')
+            victoriasEnemigo++
+            spanVictoriasEnemigo.innerHTML = victoriasEnemigo
         }
     }
-    revisarVidas()
+    revisarVictorias()
 }
 
-function revisarVidas() {
-    if (vidasEnemigo == 0) {
-        crearMensajeFinal('Felicitaciones! Ganaste 🎉✨')
-    } else if (vidasJugador == 0) {
+function revisarVictorias() {
+    if (victoriasJugador === victoriasEnemigo) {
+        crearMensajeFinal('EMPATARON! 🎭')
+    } else if (victoriasJugador > victoriasEnemigo) {
+        crearMensajeFinal('✨ FELICIDADES! GANASTE!! 🎉✨')
+    } else {
         crearMensajeFinal('HAS PERDIDO!! 💀')
     }
 }
@@ -275,22 +276,22 @@ function crearMensaje(resultado) {
     // Elemento de tipo <p>
     let nuevoAtaqueJugador = document.createElement('p')
     let nuevoAtaqueEnemigo = document.createElement('p')
+    let nuevoResultadoCombate = document.createElement('p')
 
-    sectionMensajes.innerHTML = resultado
+    // sectionRegistroCombate.innerHTML = resultado
     nuevoAtaqueJugador.innerHTML = indexAtaqueJugador
     nuevoAtaqueEnemigo.innerHTML = indexAtaqueEnemigo
+    nuevoResultadoCombate.innerHTML = resultado
 
     // Insercion del elemento
     sectionAtaqueJugador.appendChild(nuevoAtaqueJugador)
     sectionAtaqueEnemigo.appendChild(nuevoAtaqueEnemigo)
+    sectionRegistroCombate.appendChild(nuevoResultadoCombate)
 }
 
 // Aviso final
 function crearMensajeFinal(resultadoFinal) {
     sectionMensajes.innerHTML = resultadoFinal
-    botonFuego.disabled = true
-    botonAgua.disabled = true
-    botonPlanta.disabled = true
     sectionReiniciar.style.display = 'block'
 }
 

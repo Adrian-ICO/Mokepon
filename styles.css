@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root {
-    --cText: #242b2a;
-    --cTitle: #00e1ff;
-    --cOutline: #a7343e;
-    --cBorder: #8238f8;
-    --cButton: #8238f856;
-    --cWhite: #ffffff;
     --cBlack: #000000;
     --cBlackClear: #000000b3;
-    --cHydros: #7678ed;
-    --cPyrolu: #F94144;
-    --cIgnala: #F9C74F;
+    --cBorder: #8238f8;
+    --cButton: #8238f856;
     --cHerbos: #90BE6D;
-    --cNindra: #4d908e;
+    --cHydros: #7678ed;
+    --cIgnala: #F9C74F;
     --cLaguna: #219ebc;
+    --cNindra: #4d908e;
+    --cOutline: #a7343e;
+    --cPyrolu: #F94144;
+    --cText: #242b2a;
+    --cTitle: #00e1ff;
+    --cWhite: #ffffff;
 }
 
 body {
@@ -32,6 +32,7 @@ body {
 .tarjeta-ataque,
 .combate-jugador,
 .combate-enemigo,
+.historial,
 #seleccionar-mokepon,
 #seleccionar-ataque,
 #mensajes,
@@ -44,10 +45,10 @@ body {
 
 .black-box {
     margin: 60px;
-    outline: 6px var(--cOutline);
+    outline: 10px var(--cOutline);
     outline-offset: 3px;
-    outline-style: dotted;
-    border: 10px var(--cBorder);
+    outline-style: double;
+    border: 6px var(--cBorder);
     border-style: groove double;
     border-radius: 60px;
     box-sizing: border-box;
@@ -67,11 +68,6 @@ body {
     font-size: 3rem;
     text-shadow: 5px 5px 1px var(--cBlack), 6px 6px 10px var(--cWhite);
     color: var(--cTitle);
-}
-
-.subtitulo {
-    margin: 10px;
-    font-size: 2rem;
 }
 
 .tarjetas {
@@ -119,7 +115,7 @@ body {
 
 .combate {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 35% 30% 35%;
     margin: 10px;
     border: 3px outset var(--cOutline);
     border-radius: 30px 10%;
@@ -135,6 +131,18 @@ body {
     flex-wrap: wrap;
 }
 
+.subtitulo,
+#resultado {
+    margin: 10px;
+    font-size: 2rem;
+}
+
+#mokepon-jugador,
+#mokepon-enemigo,
+.registro {
+    font-size: 1.5rem;
+}
+
 button {
     transition: 0.3s;
     margin: 10px;
@@ -148,6 +156,10 @@ button {
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
     color: white;
+}
+
+.boton-ataque {
+    width: 120px;
 }
 
 button:hover {
@@ -270,10 +282,12 @@ input[id=hydros]:checked+label {
     .tarjeta-ataque {
         flex-direction: column;
     }
-    .titulo{
+
+    .titulo {
         font-size: 2.5rem;
     }
-    #mensajes{
+
+    #mensajes {
         width: 90%;
     }
 }
